@@ -1,4 +1,5 @@
 # Pi-Smart-Mirror
 Raspberry pi Smart Mirror
 
-img_apply_test -> 얼굴이 적절한 에서 벗어나면 에러남
+PyQT를 활용하여 미용실에 특화된 UI를 만들었다.
+
