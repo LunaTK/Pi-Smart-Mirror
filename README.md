@@ -1,6 +1,8 @@
 # Pi-Smart-Mirror
 Raspberry pi Smart Mirror
 
+본 과제는 성균관대학교 18년도 2학기 소프트웨어 전용반 종합설계프로젝트 수업에서 만든 prototype일 뿐 상용화를 하시면 안됩니다... ㅠㅠ
+
 PyQT를 활용하여 미용실에 특화된 UI를 만들었다.
 
 <img width="508" alt="ui" src="https://user-images.githubusercontent.com/35593401/49628358-03401500-fa27-11e8-9681-2acc3ef0ea86.png">
@@ -31,6 +33,7 @@ _____________________________________________
 1. Terminal 3개를 연다.
 
 2. Terminal에 각각 
+
                   python3 ./main_ui.py
                   
                   python3 ./timer.py
