@@ -3,7 +3,7 @@ Raspberry pi Smart Mirror
 
 PyQT를 활용하여 미용실에 특화된 UI를 만들었다.
 
-![Main_UI](https://user-images.githubusercontent.com/35593401/49581279-c9bec980-f994-11e8-8b62-c141def47ee1.JPG)
+<img width="508" alt="ui" src="https://user-images.githubusercontent.com/35593401/49628358-03401500-fa27-11e8-9681-2acc3ef0ea86.png">
 
 우측 상단에 있는 카메라는 사진을 찍는 위젯입니다.
 그 아래에 있는 설정은 관리자 모드입니다.
