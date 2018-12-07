@@ -99,10 +99,10 @@ def getXYSize(posX, posY, img, t):
         height = 2 * (posY[9] - posY[30])
         y = posY[30]
     elif (t == 2):
-        height = 2 * (posY[9] - (((posY[31] - posY[30]) * 1 / 3) + posY[30])) - 75
+        height = 2 * (posY[9] - (((posY[31] - posY[30]) * 1 / 3) + posY[30]))
         y = (((posY[31] - posY[30]) * 1 / 3) + posY[30])
     elif (t == 3):
-        height = 2 * (posY[9] - (((posY[31] - posY[30]) * 2 / 3) + posY[30])) - 75
+        height = 2 * (posY[9] - (((posY[31] - posY[30]) * 2 / 3) + posY[30]))
         y = (((posY[31] - posY[30]) * 2 / 3) + posY[30])
     elif (t == 4):
         height = 2 * (posY[9] - posY[31])
