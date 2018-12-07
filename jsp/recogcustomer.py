@@ -115,6 +115,7 @@ def mkdir(path):
     return chkdir
 def call_known_list(path):
     files = [f for f in listdir(path) if isfile(join(path,f))]
+    files.sort()
     return files
 
 def caluserNum(path):
