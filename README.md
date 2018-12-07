@@ -17,7 +17,6 @@ PyQT를 활용하여 미용실에 특화된 UI를 만들었다.
 
 
 사용한 라이브러리:
-
 Dlib    - http://dlib.net/
 
 OpenCV  - https://opencv.org/
@@ -29,7 +28,10 @@ PyQT    - https://wiki.python.org/moin/PyQt
 1. Terminal 3개를 연다.
 2. Terminal에 각각 
                   python3 ./main_ui.py
+                  
                   python3 ./timer.py
+                  
                   python3 ./gif_test.py 
+                  
    를 실행한다.
 3. 기다린다...
