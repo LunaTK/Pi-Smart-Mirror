@@ -181,6 +181,7 @@ def recognitionCustomer():
         unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
     except IndexError:
         print("Error Code:00001 No Face Found")
+        
         quit()
 
 # Load the jpg files into numpy arrays
@@ -197,7 +198,15 @@ def recognitionCustomer():
             encoding = face_recognition.face_encodings(image)[0]
         except IndexError:
             print("I wasn't able to locate any faces in at least one of the images. Check the image files. Aborting...")
-            quit()
+            print("First visit")
+            newusername = get_name()
+            customerNumber = caluserNum(knownpath)
+            save_newCusPic(customerNumber)
+            print(customerNumber)
+            save_newCusInfo(knownpath,newusername,customerNumber)
+            print(knownpath+customerNumber+".jpg")
+
+            return customerNumber,newusername,knownpath+customerNumber+".jpg",results[0]
 
         known = [encoding]
         results = face_recognition.compare_faces(known, unknown_face_encoding)
