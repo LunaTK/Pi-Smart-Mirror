@@ -15,3 +15,21 @@ PyQT를 활용하여 미용실에 특화된 UI를 만들었다.
 4. 유저 얼굴형에 따른 헤어스타일 추천
 5. 무료한 시간을 달래기 위한 영상
 
+
+사용한 라이브러리:
+
+Dlib    - http://dlib.net/
+
+OpenCV  - https://opencv.org/
+
+PyQT    - https://wiki.python.org/moin/PyQt
+
+
+실행 방법:
+1. Terminal 3개를 연다.
+2. Terminal에 각각 
+                  python3 ./main_ui.py
+                  python3 ./timer.py
+                  python3 ./gif_test.py 
+   를 실행한다.
+3. 기다린다...
