@@ -1,5 +1,4 @@
 #Code for customer face recognition
-#By Jukyung Hong
 import face_recognition
 import os
 from os import listdir
