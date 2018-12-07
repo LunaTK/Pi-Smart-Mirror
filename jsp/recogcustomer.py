@@ -8,48 +8,37 @@ import cv2
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from  PyQt5.QtWidgets import *
+from PyQt5 import *
 import sys
-#from picamera import PiCamera
+from picamera import PiCamera
 import time
 
-class App(QMainWindow):
+class registerdialog(QtWidgets.QDialog):
 
     def __init__(self):
-        super().__init__()
-        self.title = 'Register New Customer: Step1 name'
+        super(registerdialog, self).__init__()
+
+        self.title = 'Register New Customer: '
         self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
         self.left = 100
         self.top = 60
         self.width = 400
         self.height = 100
-        self.initUI()
 
-    def initUI(self):
-        self.setWindowTitle(self.title)
-        self.setGeometry(self.left, self.top, self.width, self.height)
+        self.name = QtWidgets.QLineEdit(self)
+        self.button_box = QtWidgets.QDialogButtonBox(QtWidgets.QDialogButtonBox.Ok | QtWidgets.QDialogButtonBox.Cancel)
 
-        # Create textbox
-        self.label = QLabel(self)
-        self.textbox = QLineEdit(self)
-        self.textbox.move(80, 10)
-        self.textbox.resize(280,35)
+        self.button_box.accepted.connect(self.accept)
+        self.button_box.rejected.connect(self.reject)
 
-        self.label.setText("Name: ")
-        self.label.move(10,10)
-        self.label.setFont(QFont("NanumGothic",14,QFont.Bold,italic=False))
-        # Create a button in the window
-        self.button = QPushButton('Show text', self)
-        self.button.move(150,55)
-        self.show()
-        # connect button to function on_click
-        self.button.clicked.connect(self.on_click)
+        layout = QtWidgets.QFormLayout()
+        layout.setFieldGrowthPolicy(QtWidgets.QFormLayout.AllNonFixedFieldsGrow)
+        #layout.addRow('Password', self.password)
+        layout.addWidget(self.button_box)
+        self.setLayout(layout)
+        self.setWindowTitle("Login")
+        self.setMinimumWidth(350)
 
-    @pyqtSlot()
-    def on_click(self):
-        textboxValue = self.textbox.text()
-        textboxValue = self.textbox.text()
-        QMessageBox.question(self, 'Message - pythonspot.com', "You typed: " + textboxValue, QMessageBox.Ok, QMessageBox.Ok)
-        self.textbox.setText("")
 
 '''
 class cusInfo :
@@ -62,9 +51,7 @@ class cusInfo :
 #class popupreg
 
 def piCap():
-    pass
-'''
-    path = pwd()#
+    path = pwd()
     path_store = mkdir_newUser(path) + "/current.jpg"
     with PiCamera() as camera:
         camera.resolution = (400,600)
@@ -72,7 +59,7 @@ def piCap():
         time.sleep(4)
         camera.capture(path_store)
         camera.stop_preview()
-'''
+
 #Function for saving current path
 def pwd():
     pwd = 'pwd > path.txt'
@@ -130,11 +117,17 @@ def caluserNum(path):
     usernum = str(num)
     return usernum
 
-#
+def isFirst(path):
+    files = call_known_list(path)
+    if not files:
+        return False
+    else:
+        return True
+          #
 def save_newCusInfo(knownfilepath,customerName,userNo):
-    filename = userNo + ".txt"
+    filename = knownfilepath + userNo + ".txt"
     userInfo = open(filename,"w")
-    userInfo.write(userNo)
+    userInfo.write(userNo+"\n")
     userInfo.write(customerName)
     #userInfo.write()
     userInfo.close()
@@ -156,6 +149,14 @@ def register():
     textbox.move(20,20)
     textbox.resize(280,40)
 '''#gogo okok
+
+def get_name():
+    msgname11 = registerdialog()
+    if msgname11.exec_():
+        textsss = msgname11.name.text()
+        print(textsss)
+    return textsss
+
 def recognitionCustomer():
     customerNumber = ''
     mainpath = pwd()
@@ -163,6 +164,11 @@ def recognitionCustomer():
     currentpath = mkdir_newUser(mainpath)
     currentimage= currentpath + "current.jpg"
     files = call_known_list(knownpath)
+
+    if not files:
+        print("System initialization begins")
+        #piCap()
+        return "","","",False
     print(currentimage)
 #print(mainpath)
 #print(knownpath)
@@ -178,7 +184,6 @@ def recognitionCustomer():
         quit()
 
 # Load the jpg files into numpy arrays
-    print("hii11")
     for i in range(0,len(files),1):
         print(files[i])
         filename = files[i]
@@ -201,8 +206,6 @@ def recognitionCustomer():
             tmp = filename.split('.')
             fn = tmp[0] + '.txt'
             pathforinfo = knownpath + fn
-            ex = App()
-            ex.show()
 
             file = open(pathforinfo,'r')
             info = file.readlines()
@@ -216,13 +219,16 @@ def recognitionCustomer():
             continue
         else:
             print("ERROR")
-#print(results)
+
     if results[0] == False:
         print("First visit")
-        save_newCusPic(customerNumber)
+        newusername = get_name()
         customerNumber = caluserNum(knownpath)
+        save_newCusPic(customerNumber)
         print(customerNumber)
-        save_newCusInfo(knownpath,"sung kyu",customerNumber)
+        save_newCusInfo(knownpath,newusername,customerNumber)
         print(knownpath+customerNumber+".jpg")
-        return customerNumber,"sung kyu",knownpath+customerNumber+".jpg",results[0]
+
+        return customerNumber,newusername,knownpath+customerNumber+".jpg",results[0]
         #--------------------------------------------------------------------------------------------------------------
+

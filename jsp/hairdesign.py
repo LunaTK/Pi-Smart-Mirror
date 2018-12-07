@@ -45,13 +45,13 @@ class hairror:
         #self.wigList = (cv2.imread("wigs/sample2.png", cv2.IMREAD_UNCHANGED), cv2.imread("wigs/sample3.png", cv2.IMREAD_UNCHANGED), cv2.imread("wigs/sample5.png", cv2.IMREAD_UNCHANGED))
         #dir = rc.pwd_wig()
         #print(dir)
-        self.wig_dirs = rc.call_known_list("/home/juchin/다운로드/hd-20181205T125418Z-001/hd/wigs")
+        self.wig_dirs = rc.call_known_list("/home/pi/Desktop/hd/wigs")
         self.dir_size = len(self.wig_dirs)
         print(self.wig_dirs)
         self.wigList = []
         for i in range( 0, self.dir_size) :
             #tmp = np.zeros( (self.width, self.height, 4), np.uint8 )
-            print(self.wig_dirs[i])
+            print("wig.dir : ", self.wig_dirs[i])
             tmp = cv2.imread("wigs/"+self.wig_dirs[i], cv2.IMREAD_UNCHANGED)
             self.wigList.append(tmp)
             print(self.wigList[i].shape)
@@ -92,17 +92,17 @@ class hairror:
 def getXYSize(posX, posY, img, t):
     #print(posX, posY)
     # 15-3=Distance between ear
-    width = posX[14] - posX[4]
+    width = posX[14] - posX[4] - 5
     x = posX[30]
     y = 0
     if (t == 1):
         height = 2 * (posY[9] - posY[30])
         y = posY[30]
     elif (t == 2):
-        height = 2 * (posY[9] - (((posY[31] - posY[30]) * 1 / 3) + posY[30]))
+        height = 2 * (posY[9] - (((posY[31] - posY[30]) * 1 / 3) + posY[30])) - 75
         y = (((posY[31] - posY[30]) * 1 / 3) + posY[30])
     elif (t == 3):
-        height = 2 * (posY[9] - (((posY[31] - posY[30]) * 2 / 3) + posY[30]))
+        height = 2 * (posY[9] - (((posY[31] - posY[30]) * 2 / 3) + posY[30])) - 75
         y = (((posY[31] - posY[30]) * 2 / 3) + posY[30])
     elif (t == 4):
         height = 2 * (posY[9] - posY[31])
@@ -366,7 +366,7 @@ def makeWig(width, height):
     print(x, y, sx, sy)
     seg = hairSegment(image, 50, width, height, "long")
     hairWig = getHair(image, seg)
-    wig_dirs = rc.call_known_list("/home/juchin/다운로드/hd-20181205T125418Z-001/hd/wigs")
+    wig_dirs = rc.call_known_list("/home/pi/Desktop/hd/wigs")
     print("successfully got wig from image")
     storeWig("wigs/"+str(len(wig_dirs))+".png", hairWig, x, y, sx, sy)
     print("succesfully stored wig image at wigs/"+str(len(wig_dirs))+".png")
