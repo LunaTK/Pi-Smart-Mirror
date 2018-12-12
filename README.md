@@ -1,5 +1,5 @@
 # Pi-Smart-Mirror 
-Raspberry pi Smart Mirror - Hairror
+Raspberry pi Smart Mirror - Hairror ![](https://badgen.net/badge/pre-release/1.0/green)
 
 본 과제는 성균관대학교 18년도 2학기 소프트웨어 전용반 종합설계프로젝트 수업에서 만든 prototype일 뿐 상용화 및 기타 목적을 가지고 사용하시면 안됩니다... ㅠㅠ
 
